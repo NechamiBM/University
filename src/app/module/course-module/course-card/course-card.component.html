@@ -1,19 +1,15 @@
-<mat-expansion-panel>
+<mat-expansion-panel [class.nextWeek]="checkDate()">
     <mat-expansion-panel-header>
         <mat-panel-title>
-            <!-- <div class="img-div"> -->
-                <img src={{course.image}} alt={{course.name}} />
-            <!-- </div> -->
+            <img src={{course.image}} alt={{course.name}} />
         </mat-panel-title>
         <mat-panel-description>
             <b>{{ course.name}}</b>
             Number of Lessons: {{course.lessonsCount}}
             <br>
             Instruction Mode: {{course.instructionMode}}
-            <!-- <mat-icon>account_circle</mat-icon> -->
         </mat-panel-description>
     </mat-expansion-panel-header>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio aliquid, voluptate expedita eius voluptatibus
-        assumenda accusamus eligendi suscipit ipsam eveniet reprehenderit alias temporibus eum obcaecati veritatis nam
-        deleniti possimus? Dolor.</p>
+
+    <course-details [course]="course"></course-details>
 </mat-expansion-panel>

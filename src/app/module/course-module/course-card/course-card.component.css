@@ -13,6 +13,10 @@
     overflow: hidden;
 }
 
+.nextWeek{
+    border:2px solid red;
+}
+
 mat-panel-title img {
     height: 80px;
 }

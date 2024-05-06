@@ -10,4 +10,10 @@ import { Course } from 'src/model/course.model';
 export class CourseCardComponent {
   @Input()
   course: Course;
+
+  checkDate() {
+    const nextWeek = new Date;
+    nextWeek.setDate(nextWeek.getDate() + 7)
+    return this.course.startDate >= new Date && this.course.startDate <= nextWeek;
+  }
 }

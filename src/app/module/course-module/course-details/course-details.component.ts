@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Course } from 'src/model/course.model';
 
 @Component({
-  selector: 'app-course-details',
+  selector: 'course-details',
   templateUrl: './course-details.component.html',
   styleUrls: ['./course-details.component.css']
 })
 export class CourseDetailsComponent {
-
+  @Input()
+  course: Course;
 }

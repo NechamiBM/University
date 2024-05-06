@@ -17,11 +17,12 @@ import { CommonModule } from "@angular/common";
 import { FormsModule } from '@angular/forms';
 import { CategoryService } from "./categort.service";
 import { MatSelectModule } from '@angular/material/select';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
     declarations: [AllCoursesComponent, CourseCardComponent, CourseDetailsComponent],
     imports: [CommonModule, AppRoutingModule, ReactiveFormsModule, HttpClientModule, MatGridListModule, MatButtonModule, MatExpansionModule,
-        MatIconModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, FormsModule, MatFormFieldModule, MatSelectModule],
+        MatIconModule, MatInputModule, MatDatepickerModule, FormsModule, MatFormFieldModule, MatButtonToggleModule, MatSelectModule],
     providers: [CourseService, CategoryService],
     exports: []
 })
