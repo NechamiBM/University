@@ -1,4 +1,4 @@
-export class User {
+export class Course {
     id: number;
     name: string;
     categoryId: number;

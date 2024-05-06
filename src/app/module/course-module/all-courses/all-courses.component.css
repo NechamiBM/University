@@ -1,0 +1,14 @@
+mat-accordion {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+course-card {
+    width: 30%;
+    margin-bottom: 10px;
+}
+
+.search-input {
+    width: 100%;
+}

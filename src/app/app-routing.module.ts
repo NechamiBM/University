@@ -1,19 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AllCoursesComponent } from './module/course-module/all-courses/all-courses.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
-  { path: "", redirectTo: "courses/all", pathMatch: 'full' },
-  { path: "courses/all", component: AllCoursesComponent },
-  // { path: "**", redirectTo: "employees", pathMatch: 'full' }
-  // { path: "", component: HomePageComponent },
-  // { path: "login", component: LoginComponent },
-  // { path: "register", component: RegisterComponent },
-  // { path: "logout", component: LogoutComponent },
-  // { path: "allCourses", component: AllCoursesComponent },
-  // { path: "addCourse", component: AddCourseComponent },
-  // { path: "courseDetails/:id", component: CourseDetailsComponent },
-  // { path: 'editCourse/:id', component: AddCourseComponent }
+  { path: "", redirectTo: "course", pathMatch: 'full' },
+  { path: "user", loadChildren: () => import('./module/user-module/user-routing.module').then(u => u.UserRoutingModule) },
+  { path: "course", loadChildren: () => import('./module/course-module/course-routing.module').then(c => c.CourseRoutingModule) },
+  { path: "**", component: NotFoundComponent }
 ];
 
 @NgModule({

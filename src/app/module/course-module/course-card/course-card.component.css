@@ -1,0 +1,18 @@
+.mat-expansion-panel-header-description {
+    flex-wrap: wrap;
+}
+
+.mat-expansion-panel-header {
+    height: 10%;
+    padding: 16px;
+}
+
+.mat-panel-title {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+}
+
+mat-panel-title img {
+    height: 80px;
+}

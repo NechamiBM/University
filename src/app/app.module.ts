@@ -7,10 +7,12 @@ import { CourseModule } from './module/course-module/course.module';
 import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
-  imports: [BrowserModule, AppRoutingModule, CourseModule, BrowserAnimationsModule, MatInputModule, MatTabsModule],
+  declarations: [AppComponent, HeaderComponent, NotFoundComponent],
+  imports: [BrowserModule, AppRoutingModule, CourseModule, BrowserAnimationsModule, MatInputModule, MatTabsModule ,
+],
   providers: [],
   bootstrap: [AppComponent]
 })
