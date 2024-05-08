@@ -12,8 +12,11 @@ export class CourseCardComponent {
   course: Course;
 
   checkDate() {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
     const nextWeek = new Date;
-    nextWeek.setDate(nextWeek.getDate() + 7)
-    return this.course.startDate >= new Date && this.course.startDate <= nextWeek;
+    nextWeek.setDate(nextWeek.getDate() + 7);
+    return this.course.startDate >= today && this.course.startDate <= nextWeek;
   }
+
 }

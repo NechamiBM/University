@@ -33,12 +33,7 @@ export class AllCoursesComponent {
   }
 
   filterCourses() {
-    // console.log(this.filterValue);
     const instructionMode = this.instructionModeToggle.value;
-    // console.log(instructionMode);
-    // console.log(typeof (instructionMode));
-    console.log("selectedCategory", this.categoriesFilter);
-
     this.filteredCourses = this.courses.filter(course =>
       course.name.toLowerCase().includes(this.filterValue.toLowerCase())
       && (this.categoriesFilter == undefined || course.categoryId == this.categoriesFilter)
@@ -46,16 +41,5 @@ export class AllCoursesComponent {
     );
   }
 
-  // printSelectedValue() {
-  //   console.log(this.fontStyleToggle.value);
-  // }
-  // filterCoursesByCategories() {
-  //   console.log(this.categoriesForm.value);
-  //   console.log(typeof (this.categoriesForm.value));
-  //   const selectedCategory: number = +this.categoriesForm.value;
-  //   this.filteredCourses = this.courses.filter(course =>
-
-  //   );
-  // }
 }
 
