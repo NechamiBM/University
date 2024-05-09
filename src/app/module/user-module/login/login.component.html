@@ -1,0 +1,62 @@
+<!-- <!-- <div class="login-container">
+    <h2 class="title">Login</h2>
+    <form (ngSubmit)="formSubmitted = true; enter()">
+        <div class="form-group">
+            <input class="inp form-control" matInput [formControl]="userNameFormControl" [errorStateMatcher]="matcher"
+                type="text" id="username" name="username" placeholder="User Name" [(ngModel)]="userName" required />
+            <mat-error
+                *ngIf=" userNameFormControl.invalid && (userNameFormControl.dirty || userNameFormControl.touched)">Name
+                is required!!</mat-error>
+        </div>
+        <div class="form-group">
+            <input class="inp form-control" matInput [formControl]="userPasswordFormControl"
+                [errorStateMatcher]="matcher" type="password" id="password" name="password" placeholder="Password"
+                [(ngModel)]="userPassword" required />
+            <mat-error
+                *ngIf=" userPasswordFormControl.invalid && (userPasswordFormControl.dirty || userPasswordFormControl.touched)">
+                Password is required!!</mat-error>
+        </div>
+        <button type="submit" class="btn btn-primary">Enter</button>
+    </form>
+</div> 
+
+
+<mat-form-field>
+    <mat-label>User Name</mat-label>
+    <input matInput [(ngModel)]="userName">
+    <mat-icon matSuffix>person</mat-icon>
+</mat-form-field>
+
+<mat-form-field>
+    <mat-label>password</mat-label>
+    <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="userPassword">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+</mat-form-field>
+
+<button type="submit" class="btn btn-primary">Enter</button> -->
+
+<div class="login-container">
+    <h2 class="title">Login</h2>
+    <form (ngSubmit)="formSubmitted = true; enter()" class="form-container">
+        <div class="form-group">
+            <mat-form-field>
+                <mat-label>User Name</mat-label>
+                <input matInput [(ngModel)]="userName" name="username" required>
+                <mat-icon matSuffix>person</mat-icon>
+                <mat-error *ngIf="!userName">Name is required!!</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="userPassword" name="password" required>
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-error *ngIf="!userPassword">Password is required!!</mat-error>
+            </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary" type="submit"  [disabled]="!userName || !userPassword">Enter</button>
+    </form>
+</div>

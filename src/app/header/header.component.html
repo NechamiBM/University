@@ -1,5 +1,11 @@
-<mat-tab-group mat-stretch-tabs="false" animationDuration="0ms" [selectedIndex]="selectedTabIndex" (selectedTabChange)="updateNavigation($event)">
-  <mat-tab label="all courses"></mat-tab>
-  <mat-tab label="add course"></mat-tab>
-</mat-tab-group>
+<div class="header">
+  <mat-tab-group mat-stretch-tabs="false" animationDuration="0ms" [selectedIndex]="selectedTabIndex"
+    (selectedTabChange)="updateNavigation($event)">
+    <mat-tab label="all courses"></mat-tab>
+    <mat-tab label="add course"  *ngIf="isLoggedIn()"></mat-tab>
+    <mat-tab label="login" *ngIf="!isLoggedIn()"></mat-tab>
+    <mat-tab label="register" *ngIf="!isLoggedIn()"></mat-tab>
+  </mat-tab-group>
+  <button mat-button color="primary" *ngIf="isLoggedIn()" (click)="logout()"> logout</button>
+</div>
 <br>

@@ -19,4 +19,7 @@ export class CourseCardComponent {
     return this.course.startDate >= today && this.course.startDate <= nextWeek;
   }
 
+  isLoggedIn(): boolean {
+    return !!sessionStorage.getItem('userName');
+  }
 }

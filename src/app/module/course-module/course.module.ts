@@ -27,7 +27,7 @@ import { MatChipsModule } from '@angular/material/chips';
     imports: [CommonModule, AppRoutingModule, ReactiveFormsModule, HttpClientModule, MatChipsModule, MatGridListModule, MatButtonModule, MatExpansionModule,
         MatIconModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, FormsModule, MatFormFieldModule, MatButtonToggleModule, MatSelectModule],
     providers: [CourseService, CategoryService],
-    exports: []
+    exports: [AllCoursesComponent, AddEditCourseComponent]
 })
 
 export class CourseModule { }

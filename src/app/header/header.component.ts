@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,31 @@ import { Router } from '@angular/router';
 export class HeaderComponent {
   selectedTabIndex = 0;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
+
+  isLoggedIn(): boolean {
+    return !!sessionStorage.getItem('userName');
+  }
+
+  logout() {
+    Swal.fire({
+      title: "Are you sure",
+      text: "you want to log out?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, log out!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        sessionStorage.removeItem('userName');
+        Swal.fire({
+          text: "User successfully removed.",
+          icon: "success"
+        });
+      }
+    });
+  }
 
   updateNavigation(event: any) {
     switch (event.index) {
@@ -19,7 +44,14 @@ export class HeaderComponent {
         this.router.navigate(['/course/all']);
         break;
       case 1:
-        this.router.navigate(['/course/add']);
+        if (this.isLoggedIn())
+          this.router.navigate(['/course/add']);
+        else
+          this.router.navigate(['/user/login']);
+        break;
+      case 2:
+        this.router.navigate(['/user/register']);
+        break;
     }
   }
 }

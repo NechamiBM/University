@@ -1,4 +1,4 @@
-<mat-expansion-panel [class.nextWeek]="checkDate()">
+<mat-expansion-panel [class.nextWeek]="checkDate()" [disabled]="!isLoggedIn()">
     <mat-expansion-panel-header>
         <mat-panel-title>
             <img src={{course.image}} alt={{course.name}} />
