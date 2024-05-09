@@ -1,1 +1,43 @@
-<p>register works!</p>
+<div class="register-container">
+    <h2 class="title">Register</h2>
+    <form (ngSubmit)="formSubmitted = true; register()" class="form-container">
+        <div class="form-group">
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input matInput [(ngModel)]="name" name="name" required>
+                <mat-icon matSuffix>person</mat-icon>
+                <mat-error *ngIf="!name">Name is required!!</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput [(ngModel)]="password" name="password" required>
+                <mat-icon matSuffix>visibility_off</mat-icon>
+                <mat-error *ngIf="!password">Password is required!!</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput [(ngModel)]="email" name="email" required>
+                <mat-icon matSuffix>email</mat-icon>
+                <mat-error *ngIf="!email">Email is required!!</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <mat-label>Address</mat-label>
+                <input matInput [(ngModel)]="address" name="address" required>
+                <mat-icon matSuffix>home</mat-icon>
+                <mat-error *ngIf="!address">Address is required!!</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+                <mat-chip-option [(ngModel)]="isLecturer" name="isLecturer">Lecturer</mat-chip-option>
+        </div>
+        <br />
+        <button mat-raised-button color="primary" type="submit"
+            [disabled]="!name || !address || !email || !password">Register</button>
+    </form>
+</div>

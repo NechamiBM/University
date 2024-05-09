@@ -10,8 +10,8 @@ export class UserService {
         return of(user);
     }
 
-    register() {
-
+    register(user:User):Observable<User>  {
+        return of(user);
     }
 
 

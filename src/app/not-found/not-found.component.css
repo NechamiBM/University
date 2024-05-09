@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .container {
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 3em;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 30px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
