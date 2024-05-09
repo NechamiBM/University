@@ -119,31 +119,31 @@ export const CATEGORIES: Category[] = [
     {
         id: 1,
         name: 'Programming',
-        iconRouting: '/assets/icons/programming.png'
+        iconRouting: 'desktop_mac'
     },
     {
         id: 2,
         name: 'Data Science',
-        iconRouting: '/assets/icons/web-development.png'
+        iconRouting: 'blur_linear'
     },
     {
         id: 3,
         name: 'Cybersecurity',
-        iconRouting: '/assets/icons/data-science.png'
+        iconRouting: 'adb'
     },
     {
         id: 4,
         name: 'Design',
-        iconRouting: '/assets/icons/mobile-app-development.png'
+        iconRouting: 'brush'
     },
     {
         id: 5,
         name: 'Technology',
-        iconRouting: '/assets/icons/cybersecurity.png'
+        iconRouting: 'filter_drama'
     },
     {
         id: 6,
         name: 'Financial Planning',
-        iconRouting: '/assets/icons/cybersecurity.png'
+        iconRouting: 'attach_money'
     }
 ];

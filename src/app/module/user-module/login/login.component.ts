@@ -23,14 +23,14 @@ export class LoginComponent {
 
   enter() {
     const user: User = {
-      id: 0, name: this.userName, address: "", email: "", password: this.userPassword, isLecturer: false
+      id: 1, name: this.userName, address: "", email: "", password: this.userPassword, isLecturer: false
     }
     this._userService.login(user).subscribe(
       (response) => {
         Swal.fire({
           title: 'Welcome ' + this.userName,
         });
-        sessionStorage.setItem('userName', this.userName);
+        sessionStorage.setItem('userId', user.id.toString());
         this._router.navigate(['course/all']);
       },
       (error) => {

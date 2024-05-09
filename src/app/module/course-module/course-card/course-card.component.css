@@ -13,10 +13,16 @@
     overflow: hidden;
 }
 
-.nextWeek{
-    border:2px solid red;
+.nextWeek {
+    border: 2px solid red;
 }
 
 mat-panel-title img {
     height: 80px;
+}
+
+@media (max-width: 600px) {
+    b {
+        margin-right: 10px;
+    }
 }

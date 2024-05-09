@@ -1,0 +1,12 @@
+.syl{
+    display: flex;
+}
+
+.icon{
+    width: 13px;
+    direction: rtl;
+}
+
+.line{
+    padding: 5px 0;
+}

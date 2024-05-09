@@ -1,0 +1,31 @@
+.form-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.form-field {
+    width: 30%;
+    margin: 0 1.5%;
+}
+
+.submit{
+   background-color:  #3085d6;
+   margin-right: 10px;
+}
+
+.cancel{
+    background-color:  #d33;
+}
+@media (max-width: 900px) {
+    .form-field {
+        width: 45%;
+    }
+}
+
+@media (max-width: 600px) {
+    .form-field {
+        width: 100%;
+        margin: 0;
+    }
+}

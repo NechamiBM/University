@@ -20,6 +20,6 @@ export class CourseCardComponent {
   }
 
   isLoggedIn(): boolean {
-    return !!sessionStorage.getItem('userName');
+    return !!sessionStorage.getItem('userId');
   }
 }

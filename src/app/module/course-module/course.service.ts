@@ -14,4 +14,12 @@ export class CourseService {
     getCourses(): Observable<Course[]> {
         return of(COURSES);
     }
+
+    addCourse(course:Course): Observable<any> {
+        return of(course);
+    }
+
+    updateCourse(course:Course): Observable<any> {
+        return of(course);
+    }
 }

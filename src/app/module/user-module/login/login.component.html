@@ -6,7 +6,7 @@
                 <mat-label>User Name</mat-label>
                 <input matInput [(ngModel)]="userName" name="username" required>
                 <mat-icon matSuffix>person</mat-icon>
-                <mat-error *ngIf="!userName">Name is required!!</mat-error>
+                <mat-error *ngIf="!userName">Name is required</mat-error>
             </mat-form-field>
         </div>
         <div class="form-group">
@@ -14,7 +14,7 @@
                 <mat-label>Password</mat-label>
                 <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="userPassword" name="password" required>
                 <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                <mat-error *ngIf="!userPassword">Password is required!!</mat-error>
+                <mat-error *ngIf="!userPassword">Password is required</mat-error>
             </mat-form-field>
         </div>
         <button mat-raised-button color="primary" type="submit"  [disabled]="!userName || !userPassword">Enter</button>

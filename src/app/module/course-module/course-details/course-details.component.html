@@ -1,1 +1,23 @@
-<p>course-details-works!!!</p>
+<div class="line">
+    <b>Category: </b>
+    <mat-icon>{{category.iconRouting}}</mat-icon>
+    {{category.name}}
+</div>
+<div class="line">
+    <b>Begining At: </b>
+    {{ course.startDate | date: 'dd/MM/yyyy' }}
+</div>
+<div class="line">
+    <b>Syllabus:</b>
+</div>
+<div *ngFor="let syllabusItem of course.syllabus">
+    <div class="syl">
+        <mat-icon class="icon">trending_flat</mat-icon>
+        <div>{{ syllabusItem }}</div>
+    </div>
+</div>
+<br>
+
+<button mat-raised-button *ngIf="isMyCourse()" (click)="edit()">
+    <mat-icon>edit</mat-icon>Edit Course Details
+</button>

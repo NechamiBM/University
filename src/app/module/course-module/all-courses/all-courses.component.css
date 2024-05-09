@@ -37,3 +37,17 @@ mat-icon{
     margin: 5px;
     padding-right: 20px;
 }
+
+
+@media (max-width: 900px) {
+    course-card {
+        width: 45%;
+    }
+}
+
+@media (max-width: 600px) {
+    course-card {
+        width: 100%;
+        margin: 0;
+    }
+}

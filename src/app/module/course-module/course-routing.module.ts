@@ -8,6 +8,7 @@ const routes: Routes = [
     { path: "", redirectTo: "all", pathMatch: 'full' },
     { path: "all", component: AllCoursesComponent },
     { path: "add", component: AddEditCourseComponent },
+    { path: "edit", component: AddEditCourseComponent },
     { path: "**", component: NotFoundComponent }
 ];
 

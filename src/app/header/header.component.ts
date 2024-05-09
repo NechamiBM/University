@@ -15,7 +15,7 @@ export class HeaderComponent {
   constructor(private router: Router) { }
 
   isLoggedIn(): boolean {
-    return !!sessionStorage.getItem('userName');
+    return !!sessionStorage.getItem('userId');
   }
 
   logout() {
@@ -29,7 +29,7 @@ export class HeaderComponent {
       confirmButtonText: "Yes, log out!"
     }).then((result) => {
       if (result.isConfirmed) {
-        sessionStorage.removeItem('userName');
+        sessionStorage.removeItem('userId');
         Swal.fire({
           text: "User successfully removed.",
           icon: "success"
