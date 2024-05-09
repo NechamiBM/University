@@ -30,7 +30,7 @@ export class AddEditCourseComponent {
       categoryId: [this.course?.categoryId, Validators.required],
       lessonsCount: [this.course?.lessonsCount, [Validators.required, Validators.min(1)]],
       startDate: [this.course?.startDate, Validators.required],
-      syllabus: this.fb.array(this.course?.syllabus || []), // Initialize as an empty array
+      syllabus: this.fb.array(this.course?.syllabus.map(item => this.fb.control(item)) || [this.fb.control('')]), // Initialize as an empty array
       instructionMode: [this.course?.instructionMode, Validators.required],
       image: [this.course?.image, [Validators.required, Validators.pattern('(https?://.{5,})')]]
     });
@@ -39,16 +39,12 @@ export class AddEditCourseComponent {
       this.categories = categories;
     });
 
-    this.addEmptySyllabusField();
   }
 
   onSubmit() {
-    this.removeEmptySyllabusFields();
     const id = this.course?.id;
-    console.log("form", this.courseForm.value);
     this.course = this.courseForm.value;
     this.course.id = id;
-    console.log("course", this.course);
     if (this.course.id) {
       this.courseService.updateCourse(this.course).subscribe(() => {
         Swal.fire({
@@ -95,35 +91,40 @@ export class AddEditCourseComponent {
     this.router.navigate(['course/all']);
   }
 
-  addEmptySyllabusField() {
-    const syllabusArray = this.courseForm.get('syllabus') as FormArray;
-    console.log("before", syllabusArray.value);
-
-    syllabusArray.push(this.fb.control(''));
-    console.log("after", syllabusArray.value);
+  get syllabusForms() {
+    return this.courseForm.get('syllabus') as FormArray;
   }
 
-  removeEmptySyllabusFields() {
-    const syllabusArray = this.courseForm.get('syllabus') as FormArray;
-    console.log("remove", syllabusArray.value);
-
-    for (let i = syllabusArray.length - 1; i >= 0; i--)
-      if (!syllabusArray.at(i).value.trim())
-        syllabusArray.removeAt(i);
+  addSyllabus() {
+    this.syllabusForms.push(this.fb.control(''));
   }
 
-  onSyllabusFieldChange(event: Event, index: number) {
+  removeSyllabus(index: number) {
+    this.syllabusForms.removeAt(index);
+  }
+
+  onInputDelete(event: Event, index: number) {
     const target = event.target as HTMLInputElement;
-    const value = target.value.trim();
+    const value = target.value;
+    if (!value && this.syllabusForms.at(index).dirty)
+      this.removeSyllabus(index);
+  }
 
+  onSyllabusKeyPress(event: KeyboardEvent, index: number) {
+    const target = event.target as HTMLInputElement;
+    const value = target.value;
     const lastSyllabusIndex = (this.courseForm.get('syllabus') as FormArray).length - 1;
-    const lastSyllabusValue = (this.courseForm.get('syllabus') as FormArray).at(lastSyllabusIndex).value;
-
-    if (value && index === lastSyllabusIndex)
-      this.addEmptySyllabusField();
-    else
-      this.removeEmptySyllabusFields();
-
+    console.log(event.key);
+    if (value && event.key === 'Enter') {
+      if (index == lastSyllabusIndex)
+        this.addSyllabus();
+      const nextSyllabusControl = this.syllabusForms.at(index + 1);
+      nextSyllabusControl.markAsTouched();
+      setTimeout(() => {
+        const nextInput: HTMLElement = document.querySelector(`.form-field-syl:nth-child(${index + 2}) input`);
+        nextInput.focus();
+      });
+    }
   }
 }
 

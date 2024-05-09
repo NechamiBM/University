@@ -31,16 +31,17 @@
             required</mat-error>
     </mat-form-field>
 
-    <!-- <mat-form-field> -->
-        <div formArrayName="syllabus">
-            <input matInput *ngFor="let syllabusItem of courseForm.get('syllabus').value; let i = index" type="text"
-                [formControlName]="i" placeholder="Syllabus Item {{ i + 1 }}" (input)="onSyllabusFieldChange($event,i)">
+
+    <div formArrayName="syllabus">
+        <div *ngFor="let syllabusControl of syllabusForms.controls; let i=index" class="form-field form-field-syl">
+            <mat-label>Syllabus {{ i + 1 }}</mat-label>
+            <input matInput [formControlName]="i" required (keypress)="onSyllabusKeyPress($event, i)" (input)="onInputDelete($event, i)">
         </div>
-    <!-- </mat-form-field> -->
+    </div>
 
     <mat-form-field class="form-field">
         <mat-label>Instruction Mode</mat-label>
-        <mat-select formControlName="instructionMode" >
+        <mat-select formControlName="instructionMode">
             <mat-option [value]=0>Face to Face</mat-option>
             <mat-option [value]=1>Zoom</mat-option>
         </mat-select>
