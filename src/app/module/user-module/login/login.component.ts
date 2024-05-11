@@ -23,29 +23,42 @@ export class LoginComponent {
 
   enter() {
     const user: User = {
-      id: 1, name: this.userName, address: "", email: "", password: this.userPassword, isLecturer: false
+      id: 0, name: this.userName, address: "", email: "", password: this.userPassword, isLecturer: false
     }
     this._userService.login(user).subscribe(
-      (response) => {
+      (res) => {
+        console.log("res",res);
         Swal.fire({
-          title: 'Welcome ' + this.userName,
+          title: 'Welcome ' + user.name,
         });
-        sessionStorage.setItem('userId', user.id.toString());
+        sessionStorage.setItem('userId', res.id.toString());
         this._router.navigate(['course/all']);
       },
       (error) => {
-        if (error.status === 404) {
-          console.log('שם משתמש לא קיים');
-        } else if (error.status === 401) {
-          console.log('סיסמה שגויה');
-        } else {
-          console.log('תקלה בכניסה'); 
+        if (error.status === 404)
+          Swal.fire({
+            title: "Username doesn't exist",
+            text: "Do you want to register?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes"
+          }).then((result) => {
+            if (result.isConfirmed)
+              this._router.navigate([`user/register`],{ queryParams: { name: this.userName } });
+            else
+              this.userPassword = this.userName = '';
+          });
+        else if (error.status === 401) {
+          Swal.fire({
+            title: "Wrong password",
+            icon: "error"
+          });
+          this.userPassword = '';
         }
+        console.error("error in login", error);
       }
     );
-    
-
-    console.log("User Name: " + this.userName);
-    console.log("Password: " + this.userPassword);
   }
 }

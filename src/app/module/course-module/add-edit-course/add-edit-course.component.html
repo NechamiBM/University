@@ -31,14 +31,6 @@
             required</mat-error>
     </mat-form-field>
 
-
-    <div formArrayName="syllabus">
-        <div *ngFor="let syllabusControl of syllabusForms.controls; let i=index" class="form-field form-field-syl">
-            <mat-label>Syllabus {{ i + 1 }}</mat-label>
-            <input matInput [formControlName]="i" required (keypress)="onSyllabusKeyPress($event, i)" (input)="onInputDelete($event, i)">
-        </div>
-    </div>
-
     <mat-form-field class="form-field">
         <mat-label>Instruction Mode</mat-label>
         <mat-select formControlName="instructionMode">
@@ -56,6 +48,20 @@
         <mat-error *ngIf="courseForm.get('image').invalid && courseForm.get('image').touched">Please provide a valid
             image URL</mat-error>
     </mat-form-field>
+
+    <h3>Syllabus:</h3>
+    <div class="syl" formArrayName="syllabus">
+        <mat-form-field *ngFor="let syllabusControl of syllabusForms.controls; let i=index"
+            class="form-field form-field-syl">
+            <mat-label>Syllabus {{ i + 1 }}</mat-label>
+            <input matInput [formControlName]="i" (keypress)="onSyllabusKeyPress($event, i)"
+                (input)="onInputDelete($event, i)">
+            <button *ngIf="syllabusControl.value" matSuffix mat-icon-button aria-label="Clear"
+                (click)="clearSyllabus($event,i)">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
 
     <button class="submit" mat-raised-button type="submit" [disabled]="courseForm.invalid">Submit</button>
     <button class="cancel" mat-raised-button type="button" (click)="onCancel()">Cancel</button>

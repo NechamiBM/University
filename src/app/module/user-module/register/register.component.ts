@@ -28,8 +28,8 @@ export class RegisterComponent {
   register() {
     let b: boolean;
     if (this.isLecturer == "true") b = true;
-    console.log("b",b);
-    
+    console.log("b", b);
+
     const user = {
       id: 0,
       name: this.name,
@@ -47,16 +47,22 @@ export class RegisterComponent {
           title: 'Registration Successful!',
           text: 'You have successfully registered.',
           icon: 'success',
+          showConfirmButton: false,
+          timer: 1500
         });
         this._router.navigate(['/course/all']);
       },
       (error) => {
+        if (error.status === 400) {
+          Swal.fire({
+            title: 'Oops...',
+            text: 'The username already exists in the system',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 2500
+          });
+        }
         console.error('Error during registration:', error);
-        Swal.fire({
-          title: 'Registration Failed!',
-          text: 'An error occurred during registration. Please try again later.',
-          icon: 'error',
-        });
       }
     );
   }

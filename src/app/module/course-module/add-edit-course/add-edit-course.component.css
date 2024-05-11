@@ -17,6 +17,15 @@
 .cancel{
     background-color:  #d33;
 }
+
+.syl{
+    width: 100%;
+}
+
+.form-field-syl:nth-child(2n-1){
+    margin-left: 29px;
+}
+
 @media (max-width: 900px) {
     .form-field {
         width: 45%;

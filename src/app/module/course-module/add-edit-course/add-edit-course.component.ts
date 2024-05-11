@@ -45,6 +45,7 @@ export class AddEditCourseComponent {
     const id = this.course?.id;
     this.course = this.courseForm.value;
     this.course.id = id;
+    console.log(this.course);
     if (this.course.id) {
       this.courseService.updateCourse(this.course).subscribe(() => {
         Swal.fire({
@@ -106,7 +107,8 @@ export class AddEditCourseComponent {
   onInputDelete(event: Event, index: number) {
     const target = event.target as HTMLInputElement;
     const value = target.value;
-    if (!value && this.syllabusForms.at(index).dirty)
+    const length = (this.courseForm.get('syllabus') as FormArray).length;
+    if (length !== 1 && !value && this.syllabusForms.at(index).dirty)
       this.removeSyllabus(index);
   }
 
@@ -114,8 +116,8 @@ export class AddEditCourseComponent {
     const target = event.target as HTMLInputElement;
     const value = target.value;
     const lastSyllabusIndex = (this.courseForm.get('syllabus') as FormArray).length - 1;
-    console.log(event.key);
     if (value && event.key === 'Enter') {
+      event.preventDefault();
       if (index == lastSyllabusIndex)
         this.addSyllabus();
       const nextSyllabusControl = this.syllabusForms.at(index + 1);
@@ -126,5 +128,12 @@ export class AddEditCourseComponent {
       });
     }
   }
+
+  clearSyllabus(event: Event, index: number) {
+    const syllabusForms = this.courseForm.get('syllabus') as FormArray;
+    syllabusForms.at(index).setValue('');
+    this.onInputDelete(event, index);
+  }
+
 }
 
