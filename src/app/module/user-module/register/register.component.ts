@@ -31,6 +31,7 @@ export class RegisterComponent {
           title: 'Registration Successful!', text: 'You have successfully registered.', icon: 'success', showConfirmButton: false, timer: 1500
         });
         sessionStorage.setItem('userId', res.id.toString());
+        sessionStorage.setItem('userName', res.name.toString());
         if (res.isLecturer)
           sessionStorage.setItem('isLecturer', res.isLecturer.toString());
         this._router.navigate(['/course/all']);

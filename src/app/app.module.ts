@@ -10,11 +10,12 @@ import { MatInputModule } from '@angular/material/input';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UserModule } from './module/user-module/user.module';
 import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, NotFoundComponent],
-  imports: [BrowserModule, AppRoutingModule, CourseModule,UserModule, MatButtonModule,BrowserAnimationsModule, MatInputModule, MatTabsModule ,
-],
+  imports: [BrowserModule, AppRoutingModule, CourseModule, UserModule, MatButtonModule, BrowserAnimationsModule, MatInputModule,
+    MatTabsModule, MatInputModule, MatMenuModule],
   providers: [],
   bootstrap: [AppComponent]
 })

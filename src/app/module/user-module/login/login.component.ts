@@ -29,6 +29,7 @@ export class LoginComponent {
       (res) => {
         Swal.fire({ title: 'Welcome ' + user.name });
         sessionStorage.setItem('userId', res.id.toString());
+        sessionStorage.setItem('userName', res.name.toString());
         if (res.isLecturer)
           sessionStorage.setItem('isLecturer', res.isLecturer.toString());
         this._router.navigate(['course/all']);

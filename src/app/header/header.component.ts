@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -9,8 +9,13 @@ import Swal from 'sweetalert2';
 })
 export class HeaderComponent {
   selectedTabIndex = 0;
+  name: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {  }
+
+  ngOnInit() {
+    this.name = sessionStorage.getItem('userName');
+  }
 
   isLoggedIn(): boolean {
     return !!sessionStorage.getItem('userId');
@@ -25,8 +30,7 @@ export class HeaderComponent {
       title: "Are you sure", text: "you want to log out?", icon: "warning", showCancelButton: true, confirmButtonColor: "#3085d6", cancelButtonColor: "#d33", confirmButtonText: "Yes, log out!"
     }).then((result) => {
       if (result.isConfirmed) {
-        sessionStorage.removeItem('userId');
-        sessionStorage.removeItem('isLecturer');
+        sessionStorage.clear();
         Swal.fire({ text: "User successfully removed.", icon: "success" });
       }
     });
