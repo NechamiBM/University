@@ -8,7 +8,7 @@ import { RegisterComponent } from './register/register.component';
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatChipsModule } from "@angular/material/chips";
+import { MatChipListbox, MatChipsModule } from "@angular/material/chips";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { UserService } from "./user.service";

@@ -18,20 +18,13 @@ export class CourseDetailsComponent {
   constructor(private _router: Router, private stateService: StateService, private _categotyService: CategoryService) { }
 
   ngOnInit() {
-    this.getCategory();
+    this._categotyService.getCategory(this.course.categoryId).subscribe((category) => this.category = category);
   }
-  
+
   isMyCourse() {
     return this.course.lecturerId == +sessionStorage.getItem('userId');
   }
 
-  getCategory() {
-    this._categotyService.getCategory(this.course.categoryId).subscribe(
-      (category) => {
-        this.category = category;
-      }
-    )
-  }
 
   edit() {
     this.stateService.setData(this.course);

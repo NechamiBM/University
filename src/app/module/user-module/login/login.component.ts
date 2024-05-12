@@ -27,34 +27,24 @@ export class LoginComponent {
     }
     this._userService.login(user).subscribe(
       (res) => {
-        console.log("res",res);
-        Swal.fire({
-          title: 'Welcome ' + user.name,
-        });
+        Swal.fire({ title: 'Welcome ' + user.name });
         sessionStorage.setItem('userId', res.id.toString());
+        if (res.isLecturer)
+          sessionStorage.setItem('isLecturer', res.isLecturer.toString());
         this._router.navigate(['course/all']);
       },
       (error) => {
         if (error.status === 404)
           Swal.fire({
-            title: "Username doesn't exist",
-            text: "Do you want to register?",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes"
+            title: "Username doesn't exist", text: "Do you want to register?", icon: "warning", showCancelButton: true, confirmButtonColor: "#3085d6", cancelButtonColor: "#d33", confirmButtonText: "Yes"
           }).then((result) => {
             if (result.isConfirmed)
-              this._router.navigate([`user/register`],{ queryParams: { name: this.userName } });
+              this._router.navigate([`user/register`], { queryParams: { name: this.userName } });
             else
               this.userPassword = this.userName = '';
           });
         else if (error.status === 401) {
-          Swal.fire({
-            title: "Wrong password",
-            icon: "error"
-          });
+          Swal.fire({ title: "Wrong password", icon: "error" });
           this.userPassword = '';
         }
         console.error("error in login", error);

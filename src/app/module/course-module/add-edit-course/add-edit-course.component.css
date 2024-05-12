@@ -4,9 +4,12 @@
     justify-content: center;
 }
 
+.form-field ,.form-field-syl:nth-child(3n-2){
+    margin: 0 1.5%;
+}
+
 .form-field {
     width: 30%;
-    margin: 0 1.5%;
 }
 
 .submit{
@@ -20,21 +23,26 @@
 
 .syl{
     width: 100%;
-}
-
-.form-field-syl:nth-child(2n-1){
-    margin-left: 29px;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 @media (max-width: 900px) {
-    .form-field {
+    .form-field ,.form-field-syl:nth-child(2n-1){
         width: 45%;
+        margin: 0 1.5%;
     }
 }
 
 @media (max-width: 600px) {
-    .form-field {
+    .form-field,.form-field-syl:nth-child(n) {
         width: 100%;
-        margin: 0;
+        margin: 0 1.5%;
     }
+     
+    /* .form-field-syl:nth-child(2n-1){
+        margin-left: 0;
+    } */
 }

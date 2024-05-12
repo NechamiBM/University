@@ -24,7 +24,7 @@
 
     <mat-form-field class="form-field">
         <mat-label>Start Date</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="startDate" required>
+        <input matInput [matDatepickerFilter]="filterDate" [matDatepicker]="picker" formControlName="startDate" required>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         <mat-error *ngIf="courseForm.get('startDate').invalid && courseForm.get('startDate').touched">Start date is

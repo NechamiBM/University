@@ -1,43 +1,51 @@
 <div class="register-container">
     <h2 class="title">Register</h2>
-    <form (ngSubmit)="formSubmitted = true; register()" class="form-container">
+    <form (ngSubmit)="register()" class="form-container">
+
         <div class="form-group">
             <mat-form-field>
                 <mat-label>Name</mat-label>
-                <input matInput [(ngModel)]="name" name="name" required>
+                <input matInput [formControl]="nameFormControl" name="name" required>
                 <mat-icon matSuffix>person</mat-icon>
-                <mat-error *ngIf="!name">Name is required!!</mat-error>
+                <mat-error *ngIf="nameFormControl.hasError('required')">Name is required</mat-error>
             </mat-form-field>
         </div>
+
         <div class="form-group">
             <mat-form-field>
                 <mat-label>Password</mat-label>
-                <input matInput [(ngModel)]="password" name="password" required>
-                <mat-icon matSuffix>visibility_off</mat-icon>
-                <mat-error *ngIf="!password">Password is required!!</mat-error>
+                <input matInput type="email" [formControl]="passwordFormControl" name="password" required>
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-error *ngIf="passwordFormControl.hasError('required')">Password is required</mat-error>
             </mat-form-field>
         </div>
+
+
         <div class="form-group">
             <mat-form-field>
                 <mat-label>Email</mat-label>
-                <input matInput [(ngModel)]="email" name="email" required>
+                <input matInput [formControl]="emailFormControl" required>
                 <mat-icon matSuffix>email</mat-icon>
-                <mat-error *ngIf="!email">Email is required!!</mat-error>
+                <mat-error *ngIf="emailFormControl.hasError('required')">Email is required</mat-error>
+                <mat-error *ngIf="emailFormControl.hasError('email')">Please enter a valid email address</mat-error>
             </mat-form-field>
         </div>
+
         <div class="form-group">
             <mat-form-field>
                 <mat-label>Address</mat-label>
-                <input matInput [(ngModel)]="address" name="address" required>
+                <input matInput [formControl]="addressFormControl" name="address">
                 <mat-icon matSuffix>home</mat-icon>
-                <mat-error *ngIf="!address">Address is required!!</mat-error>
             </mat-form-field>
         </div>
+
         <div class="form-group">
-            <mat-chip-option [(ngModel)]="isLecturer" name="isLecturer">Lecturer</mat-chip-option>
+            <mat-chip-option name="isLecturer"
+                (click)="this.isLecturer = !this.isLecturer">Lecturer</mat-chip-option>
         </div>
+
         <br />
         <button mat-raised-button color="primary" type="submit"
-            [disabled]="!name || !address || !email || !password">Register</button>
+            [disabled]="!nameFormControl.valid || !emailFormControl.valid || !passwordFormControl.valid">Register</button>
     </form>
 </div>

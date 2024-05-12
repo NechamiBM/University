@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { MatInputModule } from '@angular/material/input';
-import { MatTabsModule } from '@angular/material/tabs';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -18,22 +16,18 @@ export class HeaderComponent {
     return !!sessionStorage.getItem('userId');
   }
 
+  isLecturer(): boolean {
+    return !!sessionStorage.getItem('isLecturer');
+  }
+
   logout() {
     Swal.fire({
-      title: "Are you sure",
-      text: "you want to log out?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, log out!"
+      title: "Are you sure", text: "you want to log out?", icon: "warning", showCancelButton: true, confirmButtonColor: "#3085d6", cancelButtonColor: "#d33", confirmButtonText: "Yes, log out!"
     }).then((result) => {
       if (result.isConfirmed) {
         sessionStorage.removeItem('userId');
-        Swal.fire({
-          text: "User successfully removed.",
-          icon: "success"
-        });
+        sessionStorage.removeItem('isLecturer');
+        Swal.fire({ text: "User successfully removed.", icon: "success" });
       }
     });
   }

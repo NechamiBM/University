@@ -15,7 +15,6 @@ import Swal from 'sweetalert2';
 })
 export class AddEditCourseComponent {
   course: Course;
-
   courseForm: FormGroup;
   categories: Category[];
 
@@ -30,7 +29,7 @@ export class AddEditCourseComponent {
       categoryId: [this.course?.categoryId, Validators.required],
       lessonsCount: [this.course?.lessonsCount, [Validators.required, Validators.min(1)]],
       startDate: [this.course?.startDate, Validators.required],
-      syllabus: this.fb.array(this.course?.syllabus.map(item => this.fb.control(item)) || [this.fb.control('')]), // Initialize as an empty array
+      syllabus: this.fb.array(this.course?.syllabus.map(item => this.fb.control(item)) || [this.fb.control('')]), 
       instructionMode: [this.course?.instructionMode, Validators.required],
       image: [this.course?.image, [Validators.required, Validators.pattern('(https?://.{5,})')]]
     });
@@ -38,49 +37,35 @@ export class AddEditCourseComponent {
     this.categoryService.getCategories().subscribe(categories => {
       this.categories = categories;
     });
-
   }
 
   onSubmit() {
     const id = this.course?.id;
     this.course = this.courseForm.value;
+    this.course.syllabus = this.course.syllabus.filter(s => s.length != 0);
+    this.course.lecturerId = +sessionStorage.getItem("userId");
     this.course.id = id;
-    console.log(this.course);
     if (this.course.id) {
       this.courseService.updateCourse(this.course).subscribe(() => {
         Swal.fire({
-          text: "Course updated successfully",
-          icon: "success",
-          showConfirmButton: false,
-          timer: 1500
+          text: "Course updated successfully", icon: "success", showConfirmButton: false, timer: 1500
         });
         this.router.navigate(['course/all']);
       }, () => {
         Swal.fire({
-          title: "Oops...",
-          text: "Something went wrong...",
-          icon: "error",
-          showConfirmButton: false,
-          timer: 1500
+          title: "Oops...", text: "Something went wrong...", icon: "error", showConfirmButton: false, timer: 1500
         });
       }
       );
     } else {
-      this.courseService.addCourse(this.course).subscribe(() => {
+      this.courseService.addCourse(this.course).subscribe((res) => {
         Swal.fire({
-          text: "Course added successfully",
-          icon: "success",
-          showConfirmButton: false,
-          timer: 1500
+          text: "Course added successfully", icon: "success", showConfirmButton: false, timer: 1500
         });
         this.router.navigate(['course/all']);
       }, () => {
         Swal.fire({
-          title: "Oops...",
-          text: "Something went wrong...",
-          icon: "error",
-          showConfirmButton: false,
-          timer: 1500
+          title: "Oops...", text: "Something went wrong...", icon: "error", showConfirmButton: false, timer: 1500
         });
       });
     }
@@ -96,12 +81,9 @@ export class AddEditCourseComponent {
     return this.courseForm.get('syllabus') as FormArray;
   }
 
-  addSyllabus() {
-    this.syllabusForms.push(this.fb.control(''));
-  }
-
   removeSyllabus(index: number) {
-    this.syllabusForms.removeAt(index);
+    if (this.syllabusForms.value != null)
+      this.syllabusForms.removeAt(index);
   }
 
   onInputDelete(event: Event, index: number) {
@@ -119,7 +101,7 @@ export class AddEditCourseComponent {
     if (value && event.key === 'Enter') {
       event.preventDefault();
       if (index == lastSyllabusIndex)
-        this.addSyllabus();
+        this.syllabusForms.push(this.fb.control(''));
       const nextSyllabusControl = this.syllabusForms.at(index + 1);
       nextSyllabusControl.markAsTouched();
       setTimeout(() => {
@@ -134,6 +116,9 @@ export class AddEditCourseComponent {
     syllabusForms.at(index).setValue('');
     this.onInputDelete(event, index);
   }
+
+  filterDate = (d: Date | null): boolean =>
+    (d || new Date()).getDay() !== 6 && d > new Date;
 
 }
 

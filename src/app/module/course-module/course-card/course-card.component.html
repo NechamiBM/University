@@ -6,8 +6,7 @@
         <mat-panel-description>
             <b>{{ course.name}}</b>
            {{course.lessonsCount}} Lessons
-            <br>
-            {{course.instructionMode}}
+            <mat-icon class="pipe-icon">{{course.instructionMode | icon}}</mat-icon>
         </mat-panel-description>
     </mat-expansion-panel-header>
 

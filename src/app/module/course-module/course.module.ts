@@ -21,11 +21,12 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { AddEditCourseComponent } from './add-edit-course/add-edit-course.component';
 import { MatNativeDateModule } from "@angular/material/core";
 import { MatChipsModule } from '@angular/material/chips';
+import { IconPipe } from "./icon.pipe";
 
 @NgModule({
-    declarations: [AllCoursesComponent, CourseCardComponent, CourseDetailsComponent, AddEditCourseComponent],
+    declarations: [AllCoursesComponent, CourseCardComponent, CourseDetailsComponent, AddEditCourseComponent,IconPipe],
     imports: [CommonModule, AppRoutingModule, ReactiveFormsModule, HttpClientModule, MatChipsModule, MatGridListModule, MatButtonModule, MatExpansionModule,
-        MatIconModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, FormsModule, MatFormFieldModule, MatButtonToggleModule, MatSelectModule,],
+        MatIconModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, FormsModule, MatFormFieldModule, MatButtonToggleModule, MatSelectModule],
     providers: [CourseService, CategoryService],
     exports: [AllCoursesComponent, AddEditCourseComponent]
 })

@@ -25,10 +25,7 @@ export class AllCoursesComponent {
   constructor(private courseService: CourseService, private categoryService: CategoryService) { }
 
   ngOnInit(): void {
-    this.courseService.getCourses().subscribe(courses => {
-      this.courses = courses;
-      this.filteredCourses = courses;
-    });
+    this.courseService.getCourses().subscribe(courses => this.courses = this.filteredCourses = courses);
     this.categoryService.getCategories().subscribe(categories => this.categories = categories);
   }
 

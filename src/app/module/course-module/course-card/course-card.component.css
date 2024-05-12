@@ -21,6 +21,10 @@ mat-panel-title img {
     height: 80px;
 }
 
+.pipe-icon {
+    margin-left: 5%;
+}
+
 @media (max-width: 600px) {
     b {
         margin-right: 10px;

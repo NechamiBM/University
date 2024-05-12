@@ -2,7 +2,7 @@
   <mat-tab-group mat-stretch-tabs="false" animationDuration="0ms" [selectedIndex]="selectedTabIndex"
     (selectedTabChange)="updateNavigation($event)">
     <mat-tab label="all courses"></mat-tab>
-    <mat-tab label="add course"  *ngIf="isLoggedIn()"></mat-tab>
+    <mat-tab label="add course" *ngIf="isLoggedIn() && isLecturer()"></mat-tab>
     <mat-tab label="login" *ngIf="!isLoggedIn()"></mat-tab>
     <mat-tab label="register" *ngIf="!isLoggedIn()"></mat-tab>
   </mat-tab-group>
